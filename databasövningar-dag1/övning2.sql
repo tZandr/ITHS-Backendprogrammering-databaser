@@ -29,3 +29,38 @@
 -- 7. Skriv en SQL-fråga som raderar en av de inlagda datorerna.
     DELETE FROM dator
     WHERE Artikelnummer = 1003
+
+
+-- 8. Skapa en tabell för "skivor"
+-- Tabellen skall kunna användas av t.ex. en butik för CD, LP-skivor, så att all nödvändig information om varje skiva finns med.
+-- Skapa själv kolumner för tabellen, och välj rätt datatyp.
+-- Man skall kunna hitta information om vad skivan heter, vad den kostar, när den är utgiven etc.
+-- Du ska ha minst fem kolumner.
+
+    CREATE TABLE skivor(id INT PRIMARY KEY, type VARCHAR(50), name VARCHAR(50), price DECIMAL(10,2), releaseDate DATE);
+
+    INSERT INTO skivor
+    VALUES (0001, 'LP', 'Metallica', 299.90, '1991-08-12'),
+       (0002, 'CD', 'AbsoluteHits', 99.00, '2008-12-15'),
+       (0003, 'LP', 'Currents', 299.90, '2021-03-29'),
+       (0004, 'CD', 'Adele', 199.00, '2014-09-24');
+
+-- 9. Skriv en SQL-fråga som visar alla skivor för en viss artist från tabellen ”skivor”.
+    SELECT * FROM skivor;
+
+-- 10. Skriv en SQL-fråga som visar alla skivor som har givits ut senare än 2020 från tabellen ”skivor”, sortera på senast utgiven
+    SELECT * FROM skivor
+    WHERE releaseDate > '2020-01-01'
+
+-- 11. Skriv en SQL-fråga som uppdaterar en av skivorna till ett nytt pris.
+    UPDATE skivor
+    SET price = 249.00
+    WHERE id = 0004;
+
+-- 12. Skriv en SQL-fråga som raderar alla skivor av en viss artist.
+    DELETE FROM skivor
+    WHERE name = 'Adele'
+
+-- 13. Skriv en SQL-fråga som visar alla skivor för en viss artist, visa bara kolumnerna releaseDate och namn.
+    SELECT name, releaseDate FROM skivor
+    WHERE name = 'Metallica'
