@@ -1,8 +1,8 @@
--- 1. Förberedelse: Skapa ny databas.
+-- 1. Förberedelse: Skapa ny databas
 CREATE DATABASE ovningar2;
 USE ovningar2;
 
--- 2. Tabellen "mobiltelefon".
+-- 2. Tabellen "mobiltelefon"
 CREATE TABLE mobiltelefon(Serienummer INT PRIMARY KEY, Modell VARCHAR(50), Tillverkare VARCHAR(50), Lagringsutrymme_GB INT, RAM_GB INT, Pris DECIMAL(10,2), Releasedatum DATE);
 
     -- Mata in minst 3 rader med INSERT INTO.
@@ -35,7 +35,7 @@ DELETE FROM mobiltelefon
 WHERE Serienummer = 1003;
 
 
--- 3. Tabellen "filmer".
+-- 3. Tabellen "filmer"
 CREATE TABLE filmer(ID INT PRIMARY KEY , Title VARCHAR(50), Genre VARCHAR(50), Director VARCHAR(50), Release_date DATE, Pris DECIMAL(10,2));
 
 INSERT INTO filmer (ID, Title, Genre, Director, Release_date, Pris)
@@ -61,3 +61,39 @@ WHERE Director = 'Yamauchi Shigeyasu';
 
     -- Visa alla filmer av en viss regissör, men visa endast kolumnerna "Titel" och "Genre".
 SELECT Title, Genre FROM filmer WHERE Director = 'Quentin Tarantino';
+
+
+-- 3. Tabellen "kunder"
+CREATE TABLE kunder(kundID INT PRIMARY KEY, Namn VARCHAR(50), Stad VARCHAR(50), Medlemsnivå VARCHAR(50), Registreringsdatum DATE, TotalSpend DECIMAL(10,2));
+
+INSERT INTO kunder
+VALUES (1001, 'Daniel', 'Stockholm', 'Silver', '2020-10-30', 2749.00),
+       (1002, 'Caroline', 'Fuengirola', 'Silver', '2017-07-12', 6799.00);
+
+    -- Visa alla kunder, sorterade efter reg.ddatum(senast först).
+SELECT * FROM kunder ORDER BY Registreringsdatum DESC;
+
+    -- Radera alla kunder som bor i "Malmö";
+DELETE FROM kunder
+WHERE Stad = 'Malmö';
+
+    -- Uppdatera kolumen "Medlemsnivå" till "Guld" för alla kunder med TotalSpend > 5000.
+UPDATE kunder
+SET Medlemsnivå = 'Guld'
+WHERE TotalSpend > 5000;
+
+    --  Lägg till en ny kolumn med ALTER TABLE: "Favoritgenre"
+ALTER TABLE kunder ADD Favoritgenre VARCHAR(50);
+
+    -- Uppdatera alla kunder så att de får en favoritgenre
+UPDATE kunder
+SET favoritgenre = 'Action'
+WHERE kundID = 1001;
+
+UPDATE kunder
+SET favoritgenre = 'Drama'
+WHERE kundID = 1002;
+
+    -- Lägg till en ny kund (INSERT INTO) som tillhör en ny favoritgenre.
+INSERT INTO kunder
+VALUES (1003, 'Annica', 'Karlskoga', 'Brons', '2023-02-10', 1299.00, 'Fantasy');
