@@ -33,3 +33,31 @@ WHERE Serienummer = 1001;
     -- Radera en av de inlagda mobilerna.
 DELETE FROM mobiltelefon
 WHERE Serienummer = 1003;
+
+
+-- 3. Tabellen "filmer".
+CREATE TABLE filmer(ID INT PRIMARY KEY , Title VARCHAR(50), Genre VARCHAR(50), Director VARCHAR(50), Release_date DATE, Pris DECIMAL(10,2));
+
+INSERT INTO filmer (ID, Title, Genre, Director, Release_date, Pris)
+VALUES
+    (1001, 'Inception', 'Action', 'Christopher Nolan', '2010-07-23', 99.00),
+    (1002, 'Dragon Ball Z: Fusion Reborn', 'Anime', 'Yamauchi Shigeyasu', '1995-03-04', 69.00),
+    (1003, 'Django Unchained', 'Western', 'Quentin Tarantino', '2013-01-18', 99.00);
+
+    -- Visa alla filmer med genren "Action"
+SELECT * FROM filmer WHERE Genre = 'Action';
+
+    -- Visa alla filmer som släpåpts efter 2018, sorterat på senaste först.
+SELECT * FROM filmer ORDER BY Release_date DESC;
+
+    -- Uppdatera priset på en av filmerna.
+UPDATE filmer
+SET pris = 39.00
+WHERE ID = 1002;
+
+    -- Radera alla filmer av en viss regissör.
+DELETE FROM filmer
+WHERE Director = 'Yamauchi Shigeyasu';
+
+    -- Visa alla filmer av en viss regissör, men visa endast kolumnerna "Titel" och "Genre".
+SELECT Title, Genre FROM filmer WHERE Director = 'Quentin Tarantino';
