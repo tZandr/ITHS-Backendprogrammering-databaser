@@ -10,8 +10,7 @@ CREATE TABLE Membership (
 
 CREATE TABLE Member (
     member_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
     membership_id INT NOT NULL,
 
@@ -67,3 +66,32 @@ CREATE TABLE Booking ( -- Det är här jag tänker att kopplingen blir M-N
 
     CONSTRAINT uq_member_class UNIQUE (member_id, class_id)
 );
+
+-- Data
+
+-- Data
+INSERT INTO Membership (name, price, duration_months) VALUES
+('Basic', 299.00, 1),
+('Standard', 399.00, 1),
+('Premium', 499.00, 1);
+
+INSERT INTO Member (name, email, membership_id) VALUES
+('Ludvig Ekström', 'ludvig.ekstrom@example.com', 1),
+('Erik Sandberg', 'erik.sandberg@example.com', 2),
+('Maria Karlsson', 'maria.karlsson@example.com', 3);
+
+INSERT INTO Instructor (name, email) VALUES
+('Annica Larsson', 'annica.larsson@example.com'),
+('Johan Berg', 'johan.berg@example.com');
+
+INSERT INTO Class (name, start_time, duration, capacity, instructor_id) VALUES
+('Bodypump', '2025-01-10 10:00:00', 60, 15, 1),
+('Spinning', '2025-01-10 12:00:00', 45, 20, 2),
+('HIIT', '2025-01-11 18:00:00', 30, 12, 1);
+
+INSERT INTO Booking (member_id, class_id, status) VALUES
+(1, 1, 'booked'),
+(1, 2, 'booked'),
+(2, 1, 'booked'),
+(3, 3, 'booked'),
+(2, 3, 'booked');
