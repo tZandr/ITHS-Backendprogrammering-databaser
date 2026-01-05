@@ -76,3 +76,18 @@ use MyAuthors;
         }
     ]
     )
+
+-- 8. Visa samtliga författare
+    db.authors.find()
+
+-- 9. Visa en specifik författare.
+    db.authors.find({author: "Astrid Lindgren"})
+
+-- 10. Visa alla författare som är födda efter ett visst årtal
+    db.authors.find({ birth: {$gt: 1950}})
+
+-- 11. Visa alla författare som skriver inom en viss genre
+    db.authors.find({genres:"Fantasy"})
+
+-- 12. Ta bort en författare
+    db.authors.deleteOne( { author: "August Strindberg"})
