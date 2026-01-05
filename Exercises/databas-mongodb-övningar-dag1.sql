@@ -44,3 +44,35 @@ use MyAuthors;
         }
     )
 
+-- 5. Räkna hur många författare som dog efter 1950.
+    db.authors.find( { death: { $gt: 1950 }})
+
+-- 6. Uppdatera Astrid Lindgren så att hon har några fler böcker
+    db.authors.updateOne(
+        { author: "Astrid Lindgren" },
+        {
+            $set: { author: "Astrid Lindgren", books: [
+                "Bröderna Lejonhjärta", "Här kommer Pippi Långstrump", "Mio min Mio", "Ronja Rövardotter"
+                ]
+                }
+        }
+    )
+
+-- 7. Lägg till minst två författare med insertMany med följande key:value - author, birth, books (som en array), language, genres (som en array), death.
+    db.authors.insertMany([
+        { author: "Akira Toriyama",
+            birth: 1955,
+            books: [
+                "Dragon Ball"
+                ],
+            death: 2024
+            },
+        {
+            author: "Hajime Isayama",
+            birth: 1986,
+            books: [
+                "Attack on Titan"
+                ],
+        }
+    ]
+    )
