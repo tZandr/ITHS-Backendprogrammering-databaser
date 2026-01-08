@@ -30,3 +30,33 @@ use myArtists
             ]
         }
     ])
+
+    // Kommandon
+    // 2. Visa alla artister
+db.myArtists.find()
+
+    // 3. Visa en speciell artist genom att använda find()
+db.myArtists.find({ artist: "Metallica" })
+
+    // 4. Visa alla artister som är födda efter ett visst årtal
+db.myArtists.find({ birth: {$gt: 1990}})
+
+    // 5. Sök efter en titel på ett album med find o få träff på artisten som givit ut albumet.
+db.myArtists.find({ albums: "Magma" })
+
+    // med Regex(sökningen behöver inte vara exakt(?))
+db.myArtists.find({ albums: {$regex:"agma"} })
+
+    // 6. Räkna antalet dokument(artister) som finns i databasen
+db.myArtists.countDocuments()
+
+    // 7. Räkna hur många docs det finns i databasen utifrån ett kriterie
+db.myArtists.countDocuments({ birth: {$gte: 1990}})
+
+    // 8. Gör en updateOne() lägg till ett nytt key/value t ex vilket land artisten kommer ifrån för en specifik artist.
+db.myArtists.updateOne(
+    { artist: "Metallica" },
+    {
+        $set: { country: "California, USA"}
+    }
+)
