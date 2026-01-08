@@ -60,3 +60,28 @@ db.myArtists.updateOne(
         $set: { country: "California, USA"}
     }
 )
+
+    // CRUD-operationer
+    // 9. CREATE: (Lägg till ny artist)
+db.myArtists.insertOne({
+    artist: "thrown",
+    birth: 2019,
+    albums: ["Extended Pain", "Excessive Guilt"],
+    country: "Sweden"
+})
+
+    // 10. READ: (Kontrollera att det har skapats)
+db.myArtists.find()
+
+    // 11. UPDATE: (Uppdatera med något du väljer själv som finns sparat(oklar beskrivning much...?))
+db.myArtists.updateOne(
+    { artist: "thrown" },
+    {
+        $set: { genres: [
+            "Metalcore", "Harcore"]
+        }
+    }
+)
+
+    // 12. DELETE: (Radera den nya artisten)
+db.myArtists.deleteOne({ artist: "thrown" })
