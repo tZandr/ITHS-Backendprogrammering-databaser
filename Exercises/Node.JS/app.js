@@ -7,7 +7,7 @@ res.send('Hello World!');
 });
 
 app.post('/', (req, res) => {
-res.send('You just posted cringe! You are going to lose subscriber.')
+res.send('You just posted cringe! You are going to lose subscriber!')
 })
 
 app.listen(port, () => {
