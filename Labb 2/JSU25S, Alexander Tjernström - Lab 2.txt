@@ -1,0 +1,109 @@
+// Gjort i DataGrip
+
+use Lab2
+
+    // Skapa collection + modell för dokument:
+    db.createCollection("Artists")
+    db.Artists.insertMany([
+        {
+            name: "Metallica",
+            country: "USA",
+            debut: 1981,
+            genre: "Heavy Metal",
+            albums: ["Metallica", "Ride The Lightning", "Master of Puppets", "...And Justice for All"]
+        }])
+
+    // Index(unique):
+    db.Artists.createIndex({ name: 1 }, { unique: true });
+
+    // insertMany:
+    db.Artists.insertMany([
+        {
+            name: "Architects",
+            country: "England",
+            debut: 2004,
+            genre: "Metalcore",
+            albums: ["Hollow Crown", "Holy Hell", "The Sky, the Earth & All Between"]
+        },
+        {
+            name: "Gojira",
+            country: "France",
+            debut: 1996,
+            genre: "Progressive Metal",
+            albums: ["Fortitude", "L'Efant Sauvage", "Magma"]
+        },
+        {
+            name: "Bring Me the Horizon",
+            country: "England",
+            debut: 2004,
+            genre: "Metal",
+            albums: ["Sempiternal", "That's the Spirit", "Post Human: Nex Gen"]
+        }
+        ])
+
+    // CRUD - CREATE:
+    db.Artists.insertOne(
+        {
+            name: "thrown",
+            country: "Sweden",
+            debut: "2019",
+            genre: ["Hardcore Punk", "Metalcore"],
+            albums: ["Extended Pain", "Excessive Guilt"]
+        }
+    )
+
+    // READ:
+    db.Artists.find()
+
+    // UPDATE:
+    db.Artists.updateOne(
+        { name: "Metallica" },
+        { $set: { genre: ["Heavy Metal", "Trash Metal"] }
+            }
+    )
+
+    // DELETE:
+    db.Artists.deleteOne({ name: "Metallica" })
+
+    // Uppdatera allt som fyller ett kriterie, för att visa att dokument kan ha olika struktur:
+    db.Artists.updateMany(
+        { genre: "Metalcore" },
+        { $set: { active: true }}
+    )
+
+    // Array - push:
+    db.Artists.updateOne(
+        { name: "Architects" },
+        { $push: { albums: "For Those That Wish to Exist" }}
+    )
+
+    // Array - uppdatera:
+    db.Artists.updateOne(
+        { name: "Architects", albums: "For Those That Wish to Exist" },
+        { $set: { "albums.$": "Lost Forever // Lost Together" }}
+    )
+
+    // Söka med find och ett kriterie:
+    db.Artists.find({ genre: "Metalcore" })
+
+    // Söka med siffra som kriterie och sortera stigande utifrån valt kriterie:
+    db.Artists.find({ debut: { $gte: 2000 }})
+    .sort({ debut: 1 })
+
+    // Visa endast ett urval av fields med find():
+    db.Artists.find( { }, { name: 1, genre: 1, debut: 1, _id: 0 })
+
+    // countDocuments:
+    db.Artists.countDocuments()
+
+    // countDocuments under ett kriterie:
+    db.Artists.countDocuments({ genre: "Metalcore" })
+
+    // Visa att index fungerar(Ska få error):
+    db.Artists.insertOne({
+        name: "thrown",
+        country: "Sweden",
+        debut: "2019",
+        genre: ["Hardcore Punk", "Metalcore"],
+        albums: ["Extended Pain", "Excessive Guilt"]
+    })
