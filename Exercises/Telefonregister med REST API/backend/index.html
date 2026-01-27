@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Telefoner</title>
+  </head>
+  <body>
+    <h1>Telefonregister</h1>
+    <ul id="phoneList"></ul>
+
+    <script>
+      fetch("http://localhost:3000/api/phones")
+        .then((res) => res.json())
+        .then((data) => {
+          const list = document.getElementById("phoneList");
+
+          data.forEach((phone) => {
+            const li = document.createElement("li");
+            li.textContent = `${phone.brand} ${phone.model} - ${phone.price} kr`;
+            list.appendChild(li);
+          });
+        });
+    </script>
+  </body>
+</html>
