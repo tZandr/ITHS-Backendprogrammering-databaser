@@ -1,0 +1,44 @@
+// 1
+db.school.find()
+
+// 2
+db.school.find({ city: "Göteborg" })
+
+// 3
+db.school.find({ isActive: true })
+
+// 4
+db.school.find({ age: {$gt: 23}})
+
+// 5
+db.school.find({ grade: {$gte: 4}})
+
+// 6
+db.school.find({ program: "Web Development"})
+
+// 7
+db.school.find().sort( {age: 1})
+
+// 8
+db.school.find().sort( {age: -1})
+
+// 9
+db.school.find().sort({ grade: -1 }).limit(3)
+
+// 10
+db.school.find({ city: "Göteborg", grade: {$gt: 3}})
+
+// 11
+db.school.find({ age: {$gte: 20, $lte: 25}})
+
+// 12
+db.school.find({ city: { $ne: "Stockholm"} })
+
+// 13
+db.school.find({ }, { name: 1, program: 1,  grade: 1, _id: 0 } )
+
+// 14
+db.school.countDocuments({ program: "Web Development" })
+
+// 15
+db.school.distinct("city")
