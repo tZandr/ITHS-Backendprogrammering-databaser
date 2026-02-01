@@ -204,7 +204,7 @@ app.delete("/albums/:id", (req, res) => {
   );
 });
 
-// Statistik
+// Statistik med JOIN för VG
 app.get("/stats", (req, res) => {
   connection.query(
     "SELECT artists.name, COUNT(albums.id) AS albumCount FROM artists LEFT JOIN albums ON artists.id = albums.artist_id GROUP BY artists.id",
