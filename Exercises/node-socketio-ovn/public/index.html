@@ -1,14 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <title>Socket.IO chat</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
     <h1>Chat</h1>
-    <form id="form" action="">
-      <input type="text" id="input"><button>Send</button>
-    </form>
+    <div id="userContainer"></div>
+    <div id="user">
+      <form id="formUser">
+        <input type="text" id="inputUser" /><button>Set User</button>
+      </form>
+    </div>
+    <div id="message">
+      <form id="formMessage">
+        <input type="text" id="inputMessage" /><button>Send Message</button>
+      </form>
+    </div>
     <h2>Chat meddelanden</h2>
     <ul id="messages"></ul>
     <script src="/socket.io/socket.io.js"></script>
