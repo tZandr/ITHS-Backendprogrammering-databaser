@@ -3,6 +3,8 @@ const router = express.Router();
 const Supplier = require("../models/supplier");
 const Product = require("../models/product");
 
+console.log("Product routes loaded");
+
 // CREATE (using new Product)
 router.post("/", async (req, res) => {
   const product = new Product(req.body);
@@ -40,8 +42,10 @@ router.delete("/:id", async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
 
   // remove from suppliers product array
-  await Supplier.findByIdAndDelete(product.supplier, {
+  await Supplier.findByIdAndUpdate(product.supplier, {
     $pull: { products: product._id },
   });
   res.json({ message: "Product deleted from supplier" });
 });
+
+module.exports = router;

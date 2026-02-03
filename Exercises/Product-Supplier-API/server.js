@@ -10,8 +10,8 @@ app.use(express.json());
 
 connectDB();
 
-app.use("./routes/products", productRoutes);
-app.use("./routes/suppliers", supplierRoutes);
+app.use("/products", productRoutes);
+app.use("/suppliers", supplierRoutes);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
