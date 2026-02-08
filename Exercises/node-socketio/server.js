@@ -13,9 +13,12 @@ app.use(express.static("public"));
 io.on("connection", (socket) => {
   console.log("A user has connected.");
   socket.emit("count", count);
+
+  socket.on("increment", () => {
+    count++;
+    io.emit("count", count);
+  });
 });
-
-
 
 server.listen(3000, () => {
   console.log("Server is listening on port 3000");
