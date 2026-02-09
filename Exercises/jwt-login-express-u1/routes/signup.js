@@ -4,7 +4,7 @@ const User = require("../models/users");
 
 console.log("Signup route loaded")
 
-export const register = async (email, password) => {
+const register = async (email, password) => {
   // Check if the user already exists:
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -31,4 +31,4 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+module.exports = { router, register}

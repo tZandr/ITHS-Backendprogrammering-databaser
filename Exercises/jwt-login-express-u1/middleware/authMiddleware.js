@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-export const protect = (req, res, next) => {
+const protect = (req, res, next) => {
   // Get the token from the Authorization header:
   const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
@@ -15,3 +15,5 @@ export const protect = (req, res, next) => {
     return res.status(401).send("Invalid token");
   }
 };
+
+module.exports = protect;
