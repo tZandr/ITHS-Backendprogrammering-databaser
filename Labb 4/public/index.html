@@ -10,11 +10,14 @@
     <div id="chat">
       <h2>Chat</h2>
       <ul class="chat-messages"></ul>
-      <input
-        type="text"
-        class="chat-input"
-        placeholder="Type your message..."
-      />
+      <form id="messageForm">
+        <input
+          type="text"
+          id="messageInput"
+          placeholder="Type your message..."
+        />
+        <button>Send</button>
+      </form>
     </div>
     <script src="client.js"></script>
     <script src="/socket.io/socket.io.js"></script>
