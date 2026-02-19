@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 
-const connectionMongoDB = async () => {
+const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/lab4");
+    const { MONGO_USER, MONGO_PASS, MONGO_CLUSTER, MONGO_DB } = process.env;
+
+    const uri = `mongodb+srv://${MONGO_USER}:${MONGO_PASS}@${MONGO_CLUSTER}/${MONGO_DB}?retryWrites=true&w=majority`;
+
+    await mongoose.connect(uri);
+    console.log("MongoDB Atlas connected");
   } catch (error) {
-    console.error(error);
+    console.error("MongoDB connection failed:", error.message);
     process.exit(1);
   }
 };
 
-module.exports = connectionMongoDB;
+module.exports = connectDB;
