@@ -20,3 +20,17 @@ userForm.addEventListener("submit", function (e) {
   welcomeUser.innerHTML = `Welcome <strong>${user}</strong>!`;
   chatBox.appendChild(welcomeUser);
 });
+
+messageForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  if (messageInput.value) {
+    socket.emit("chatMessage", { user: user, message: messageInput.value });
+    messageInput.value = "";
+  }
+});
+
+socket.on("newMessage", function (msg) {
+  let item = document.createElement("li");
+  item.textContent = msg;
+  chatBox.appendChild(item);
+});
