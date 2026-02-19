@@ -6,10 +6,20 @@
     <title>Lab4</title>
   </head>
   <body>
-    <div id="game"></div>
+    <div id="userDiv">
+      <form id="userForm">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Enter your username..."
+        />
+        <button>Submit</button>
+      </form>
+    </div>
+    <div id="game" style="display: none"></div>
     <div id="chat">
       <h2>Chat</h2>
-      <ul class="chat-messages"></ul>
+      <ul id="chatBox"></ul>
       <form id="messageForm">
         <input
           type="text"
@@ -19,7 +29,7 @@
         <button>Send</button>
       </form>
     </div>
-    <script src="client.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
   </body>
 </html>
