@@ -17,7 +17,9 @@ connectionMongoDB();
 app.use(express.static("public"));
 
 io.on("connection", (socket) => {
+  
   console.log(`${socket.id} has connected!`);
+
   socket.on("chatMessage", (msg) => {
     let today = new Date();
     let date =
