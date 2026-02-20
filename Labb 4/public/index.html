@@ -19,18 +19,29 @@
       </form>
     </div>
     <div id="lobby" style="display: none">
-      <div id="chat">
-        <ul id="chatBox"></ul>
-        <form id="messageForm">
-          <input
-            type="text"
-            id="messageInput"
-            placeholder="Type your message..."
-          />
-          <button>Send</button>
-        </form>
+      <div id="chatSide">
+        <div id="players"></div>
+        <div id="chat">
+          <ul id="chatBox"></ul>
+          <form id="messageForm">
+            <input
+              type="text"
+              id="messageInput"
+              placeholder="Type your message..."
+            />
+            <button>Send</button>
+          </form>
+        </div>
       </div>
-      <div id="game"></div>
+      <div id="gameSide">
+        <div id="rolls">
+          <p id="diceOne">5</p>
+          <p>+</p>
+          <p id="diceTwo">2</p>
+        </div>
+        <div id="sum"><h1>7</h1></div>
+        <button id="rollButton">Roll Dice</button>
+      </div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>

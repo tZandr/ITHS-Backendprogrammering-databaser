@@ -2,11 +2,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 body {
   background-color: rgb(32, 32, 32);
   color: rgb(235, 235, 235);
+}
+
+#lobby {
+  display: flex;
+  height: 100vh;
 }
 
 #userDiv {
@@ -50,15 +56,22 @@ h2 {
   transition: 0.1s;
 }
 
-#chat {
+#chatSide {
   background-color: rgb(29, 29, 29);
   padding: 10px;
   width: 400px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: space-between;
+}
+
+#players {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 #messageInput {
@@ -83,4 +96,41 @@ h2 {
 
 ul {
   list-style: none;
+}
+
+/* -- Game -- */
+#gameSide {
+  flex: 1; /* Tar resten av bredden */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#rolls,
+#sum {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+#rolls p {
+  margin: 0 5px;
+}
+
+#rollButton {
+  width: 75px;
+  padding: 7px 0px;
+  margin: 10px;
+  border: 0px;
+  background-color: rgb(44, 44, 44);
+  border: none;
+  color: rgb(235, 235, 235);
+  transition: 0.1s;
+}
+
+#rollButton:hover {
+  background-color: rgb(49, 49, 49);
+  transition: 0.1s;
 }
