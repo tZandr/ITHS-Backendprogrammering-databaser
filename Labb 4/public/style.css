@@ -1,0 +1,86 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(32, 32, 32);
+  color: rgb(235, 235, 235);
+}
+
+#userDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#userForm {
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#userInput {
+  text-align: center;
+  padding: 5px;
+  margin: 5px 0;
+}
+
+#userInput:focus {
+  outline: none;
+}
+
+#userForm button {
+  padding: 5px;
+  border: 0px;
+  background-color: rgb(44, 44, 44);
+  border: none;
+  color: rgb(235, 235, 235);
+  transition: 0.1s;
+}
+
+#userForm button:hover {
+  background-color: rgb(49, 49, 49);
+  transition: 0.1s;
+}
+
+#chat {
+  background-color: rgb(29, 29, 29);
+  padding: 10px;
+  width: 400px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+#messageInput {
+  width: 300px;
+  padding: 5px 0px;
+  padding-left: 3px;
+  margin-top: 5px;
+}
+#messageInput:focus {
+  outline: none;
+}
+
+#messageForm button {
+  width: 75px;
+  padding: 7px 0px;
+  border: 0px;
+  background-color: rgb(44, 44, 44);
+  border: none;
+  color: rgb(235, 235, 235);
+  transition: 0.1s;
+}
+
+ul {
+  list-style: none;
+}

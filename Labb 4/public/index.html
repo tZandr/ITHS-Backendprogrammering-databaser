@@ -4,10 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab4</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div id="userDiv">
       <form id="userForm">
+        <h2>Lab 4</h2>
         <input
           type="text"
           id="userInput"
@@ -16,18 +18,19 @@
         <button>Submit</button>
       </form>
     </div>
-    <div id="game" style="display: none"></div>
-    <div id="chat">
-      <h2>Chat</h2>
-      <ul id="chatBox"></ul>
-      <form id="messageForm">
-        <input
-          type="text"
-          id="messageInput"
-          placeholder="Type your message..."
-        />
-        <button>Send</button>
-      </form>
+    <div id="lobby" style="display: none">
+      <div id="chat">
+        <ul id="chatBox"></ul>
+        <form id="messageForm">
+          <input
+            type="text"
+            id="messageInput"
+            placeholder="Type your message..."
+          />
+          <button>Send</button>
+        </form>
+      </div>
+      <div id="game"></div>
     </div>
     <script src="/socket.io/socket.io.js"></script>
     <script src="client.js"></script>

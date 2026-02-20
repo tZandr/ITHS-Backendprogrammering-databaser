@@ -6,6 +6,7 @@ const messageForm = document.getElementById("messageForm");
 const messageInput = document.getElementById("messageInput");
 const chatBox = document.getElementById("chatBox");
 const userDiv = document.getElementById("userDiv");
+const lobby = document.getElementById("lobby");
 
 let user;
 
@@ -14,7 +15,7 @@ userForm.addEventListener("submit", function (e) {
   user = userInput.value;
 
   userDiv.style.display = "none";
-  chatBox.style.display = "block";
+  lobby.style.display = "block";
 
   let welcomeUser = document.createElement("li");
   welcomeUser.innerHTML = `Welcome <strong>${user}</strong>!`;
