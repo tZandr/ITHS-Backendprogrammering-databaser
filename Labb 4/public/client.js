@@ -15,7 +15,7 @@ userForm.addEventListener("submit", function (e) {
   user = userInput.value;
 
   userDiv.style.display = "none";
-  lobby.style.display = "block";
+  lobby.style.display = "flex";
 
   let welcomeUser = document.createElement("li");
   welcomeUser.innerHTML = `Welcome <strong>${user}</strong>!`;
