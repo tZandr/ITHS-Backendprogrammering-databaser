@@ -18,7 +18,6 @@ app.use(express.static("public"));
 
 io.on("connection", (socket) => {
   console.log(`${socket.id} has connected!`);
-
   socket.on("chatMessage", (msg) => {
     let today = new Date();
     let date =
@@ -29,17 +28,8 @@ io.on("connection", (socket) => {
       today.getDate();
     let time = // Get current time
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    let dateTime = date + " " + time;
     // emit message with current time, user and their sent message
-    io.emit("newMessage", `(` + time + `)` + msg.user + ": " + msg.message);
-
-    // save message to mongoose
-    const newMessage = new messageModel({
-      message: msg.message,
-      user: msg.user,
-      date: dateTime,
-    });
-    newMessage.save();
+    io.emit("newMessage", `(` + time + `) ` + msg.user + ": " + msg.message);
   });
 
   socket.on("disconnect", () => {
