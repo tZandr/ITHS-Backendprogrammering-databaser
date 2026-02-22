@@ -9,29 +9,40 @@ const io = new Server(server);
 
 const port = 3000;
 
-const messageModel = require("./models/messageModel");
+const scoreModel = require("./models/scoreModel");
+const scoresRouter = require("./routes/scoreRoute");
 
 const connectionMongoDB = require("./connectionMongoDB");
 connectionMongoDB();
 
 app.use(express.static("public"));
+app.use("/", scoresRouter);
 
 io.on("connection", (socket) => {
-  
   console.log(`${socket.id} has connected!`);
 
   socket.on("chatMessage", (msg) => {
     let today = new Date();
-    let date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
-    let time = // Get current time
+    let time =
       today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    // emit message with current time, user and their sent message
+
     io.emit("newMessage", `(` + time + `) ` + msg.user + ": " + msg.message);
+  });
+
+  // Save data, send to db, emit message with score
+  socket.on("rollDice", async (data) => {
+    const newRoll = new scoreModel({
+      user: data.user,
+      score: data.score,
+      total: data.total,
+    });
+
+    await newRoll.save();
+
+    io.emit("scoreMessage", {
+      type: "system",
+      message: `${data.user} just rolled ${data.score}. Their total is now ${data.total}!`,
+    });
   });
 
   socket.on("disconnect", () => {

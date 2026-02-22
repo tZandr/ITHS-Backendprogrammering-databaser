@@ -7,7 +7,6 @@ const messageInput = document.getElementById("messageInput");
 const chatBox = document.getElementById("chatBox");
 const userDiv = document.getElementById("userDiv");
 const lobby = document.getElementById("lobby");
-// const players = document.getElementById("players");
 const rollButton = document.getElementById("rollButton");
 const diceOne = document.getElementById("diceOne");
 const diceTwo = document.getElementById("diceTwo");
@@ -41,15 +40,34 @@ socket.on("newMessage", function (msg) {
   chatBox.appendChild(item);
 });
 
+let totalScore = 0;
+
 rollButton.addEventListener("click", function () {
   const dice1 = Math.floor(Math.random() * 6) + 1;
   const dice2 = Math.floor(Math.random() * 6) + 1;
+  const sumDice = dice1 + dice2;
+
+  diceOne.innerText = dice1;
+  diceTwo.innerText = dice2;
+  sum.innerText = sumDice;
+
+  totalScore += sumDice;
+  console.log(totalScore);
+  socket.emit("rollDice", {
+    user: user,
+    score: sumDice,
+    total: totalScore,
+  });
 });
 
-/* Show score per player live in a box above chat(maybe later):
-  let playerIcon = document.createElement("div");
-  playerIcon.innerHTML(`
-    <p class="player">${user}</p>
-    <h5></h5>
-    `);
-*/
+socket.on("scoreMessage", function (data) {
+  console.log("User scoreMessage:", data);
+  let item = document.createElement("li");
+  item.textContent = data.message;
+  chatBox.appendChild(item);
+
+  if (data.type === "system") {
+    item.style.color = "yellow";
+    item.style.fontStyle = "italic";
+  }
+});
